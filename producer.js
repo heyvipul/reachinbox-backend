@@ -3,7 +3,7 @@ require("dotenv").config();
 const auth = {
     type : "OAuth2",
     user : "vipulgirhestar@gmail.com",
-    clientId : process.env. GOOGLE_CLIENT_ID,
+    clientId : process.env.GOOGLE_CLIENT_ID,
     clientSecretKey : process.env.GOOGLE_SECRETKEY,
 }
 
