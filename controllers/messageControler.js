@@ -121,3 +121,31 @@ const sendMail = async (data) => {
         throw error;
     }
 }
+
+const sendMailViaQueue = async (req,res) =>{
+    try {
+        const {id} = req.params;
+        const {from ,to} = req.body
+        init({from,to,id});
+        res.send("Mail processing has been queued")
+    } catch (error) {
+        console.log(error);
+        res.send("error in sending mail via queue")
+    }
+}
+
+const sendMultipleEmails = async (req,res) =>{
+    try {
+        const {id} = req.params;
+        const {from, to} = req.body;
+        for(let i = 0;i<to.length;i++){
+            await init ({from , to : to[i],id})
+        }
+        res.send("Multiple emails processing has been queued.")
+    } catch (error) {
+        console.log(error);
+        res.send("Error in sending multiple emails")
+    }
+}
+
+module.exports = {getUser,sendMail,readMail,sendMailViaQueue,sendMultipleEmails}
